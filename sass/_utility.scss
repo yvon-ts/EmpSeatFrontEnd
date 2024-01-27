@@ -1,0 +1,30 @@
+.flex{
+    display: flex;
+  }
+  .flex-col{
+    display: flex;
+    flex-direction: column;
+  }
+  .col-reverse{
+    flex-direction: column-reverse;
+  }
+  .just-btwn{
+    justify-content: space-between;
+  }
+  .just-around{
+    justify-content: space-around;
+  }
+  .just-center{
+    justify-content: center;
+  }
+  .align-items-center{
+    align-items: center;
+  }
+  .hide-overflow{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+  .hidden{
+    display: none;
+  }

@@ -1,0 +1,249 @@
+/* ---------------------------- header ---------------------------- */
+.header{
+    width: 100vw;
+    box-sizing: border-box;
+    background-color: #5c6bc0;
+    .left-content{
+        width: 20%;
+    }
+    .logo-content{
+        // width: 20%;
+        min-width: 240px;
+        .sys-name{
+            box-sizing: border-box;
+            padding-left: 24px;
+            font-size: 32px;
+            color: white;
+        }
+    }
+    .search-content{
+        margin-right: 12px;
+        #keywords{
+            width: 300px;
+            padding: 12px 16px;
+            border-radius: 4px 0 0 4px;
+            border: none;
+        }
+        #search{
+            border: none;
+            cursor: pointer;
+            border-radius: 0 4px 4px 0;
+            padding: 12px 16px;
+    }
+}
+    .logo{
+        height: 36px;
+        margin-left: 12px;
+    }
+    .right-content{
+        display: flex;
+        align-items: center;
+        padding-right: 24px;
+        .user-info  #logout{
+           font-size: 32px;
+           color: white;
+        }   
+    }
+}
+
+/* settings: username, hello */
+.data-title:before {
+    content: attr(data-menutitle);
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    background: #DDD;
+    padding: 2px;
+  
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+  }
+  .data-title :first-child {
+    margin-top: 20px;
+  }
+/* ---------------------------- sidebar ---------------------------- */
+.my-trash{
+    margin-left: 12px;
+}
+.add-btn{
+    width: 100%;
+    border-radius: 4px;
+    border: 1px solid #5c6bc0;
+    color: #5c6bc0;
+    background-color: #fff;
+    padding: 8px;
+    &:hover{
+        cursor: pointer;
+        background-color: rgba(92, 107, 192, 0.2);
+    }
+}
+
+.side-bar-menu{
+    &.active{
+        cursor: default;
+    }
+    &:not(.active):hover{
+        background-color: rgba(92, 107, 192, 0.5);
+        cursor: pointer;
+      }
+}
+  /* ---------------------------- content ---------------------------- */
+
+  .highlightDropArea {
+    border: 5px #aaa dashed;
+  }
+  #drag-drop-reminder{
+    position: absolute;
+    left: 50%;
+    top: 70%;
+    color: #aaa;
+  }
+
+.main-content{
+    display: flex;
+    .side-bar-container{
+        border-right: 1px solid #aaa;
+        height: calc(100vh - 64px);
+        i{
+            margin-right: 12px;
+        }
+        #side-bar{
+            li{
+                padding: 16px 20px;
+            }
+        }
+    }
+    #breadcrumb{
+        line-height: 40px;
+        font-size: 1rem;
+        text-align: left;
+        border-radius: 40px;
+        background-color: rgba(92, 107, 192, 0.15);
+        margin: 12px;
+        .my-drive{
+            padding: 0 4px;
+            line-height: 40px;
+            &.active{
+                font-weight: 900;
+            }
+            &:not(.active):hover{
+                color: #5c6bc0;
+                border-bottom: 1px #5c6bc0 solid;
+                cursor: pointer;
+            }
+        }
+        .breadcrumb{
+            max-width: 200px;
+            &.active{
+                font-weight: 900;
+            }
+            &:not(.active):hover{
+                color: #5c6bc0;
+                border-bottom: 1px #5c6bc0 solid;
+                cursor: pointer;
+            }
+        }
+        .breadcrumb-delimiter{
+            margin: 0 12px;
+        }
+    }
+}
+.tool-drive, .tool-trash{
+    &:first-child{
+        margin-left: 12px;
+    }
+}
+#toolbar, #root{
+    line-height: 40px;
+    &:first-child{
+        margin-left: 12px;
+    }
+    button{
+        padding: 12px;
+        border: none;
+        background-color: transparent;
+        cursor: pointer;
+        &:hover{
+            background-color: rgba(92, 107, 192, 0.15);
+            border-radius: 50%;
+        }
+    }
+}
+
+#seat-chart, #folder, #file, #sub-folder {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px;
+    padding: 16px;
+  }
+
+.floor, .seat, .folder-trash, .file-trash{
+    font-size: 14px;
+    border-radius: 4px;
+    line-height: 32px;
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: center;
+    background-color: #f3f3f3;
+    cursor: pointer;
+    &.focus{
+        border: 5px solid rgba(92, 107, 192, 0.5);
+    }
+}
+.floor, .file{
+    &[access="1"]{
+        background-color: #dfedfa;
+      }
+}
+.icon{
+    margin-right: 12px;
+}
+@mixin box-style{
+    font-family: 'FontAwesome';
+    display: block;
+    width: 98%;
+    height: 150px;
+    position: relative;
+    left: 1%;
+    background-color: #fff;
+    line-height: 150px;
+    font-size: 60px;
+    border-radius: 4px;
+    margin-bottom: 4px;
+}
+.box-pdf::before{
+    @include box-style;
+    content: '\f1c1';
+    color: rgba(92, 107, 192, 0.5);
+}
+.box-image::before{
+    @include box-style;
+    content: '\f03e';
+    color: rgba(192, 92, 107, 0.5);
+}
+.box-file::before{
+    @include box-style;
+    content: '\f15b';
+    color: rgba(107, 192, 92, 0.5);
+}
+
+/* ---------------------------- dialog ---------------------------- */
+.super-folder-container{
+    li{
+        line-height: 40px;
+        &.selected{
+            background-color: rgba(92, 107, 192, 0.15);
+        }
+        &:not(.selected):hover{
+            cursor: pointer;
+            background-color: #f3f3f3;
+        }
+    }
+}
+#sub-folder .focus, #sub-folder .origin{
+    color: #ccc;
+    border: none;
+  }

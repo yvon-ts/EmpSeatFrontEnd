@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+    <title>員工座位安排系統</title>
+    <link rel="stylesheet" href="css/main.css" />
+
+  </head>
+  <body>
+    <div id="container">
+      <header class="header flex just-btwn align-items-center">
+        <div class="left-content flex just-btwn">
+          <div class="logo-content flex align-items-center">
+            <h1 class="sys-name">員工座位安排系統</h1>
+          </div>
+        </div>
+        <div class="right-content">
+          <div>
+            <div id="user" class="user-info">
+              <i id="logout" class="fas fa-user-circle"></i>
+            </div>
+          </div>
+        </div>
+      </header>
+      <main class="main-content">
+        <aside class="side-bar-container">
+          <nav id="side-bar">
+            <select name="" id="selectOffice">
+              <option value="">請選擇公司別</option>
+              <option value="10000">10000 總公司</option>
+            </select>
+            <div id="overview" class="flex col-reverse align-items-center"></div>
+          </nav>
+        </aside>
+        <!-- <section id="content" class="dropFiles" style="border: 1px solid #000"> -->
+        <section id="content" class="dropFiles">
+          <nav>
+            
+            <select name="" id="selectDept">
+              <option value="">請選擇部門</option>
+            </select>
+            <select name="" id="selectEmp">
+              <option value="">請選擇員工</option>
+            </select>
+          </nav>
+          <div id="drive-data">
+            <div id="overview" class="flex col-reverse align-items-center"></div>
+            <div id="seat-chart"></div>
+          </div>
+        </section>
+      </main>
+    </div>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+    <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="js/constants.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+      var currentOffice;
+      $('#selectOffice').change(() => {
+        var officeId = $(event.target).val();
+        currentOffice = officeId;
+        getFloorsByOffice(officeId);
+      })
+      
+      function getFloorsByOffice(officeId){
+        const url = API_DOMAIN + "/office/" + officeId + "/floors";
+        axios.get(url
+        // ,{
+        // headers: {
+        //     'token': localStorage.getItem('token')}
+        // }
+    ).then(response => {
+      const result = response.data.data;
+        renderOffices(result);
+    })
+  }
+
+
+    </script>
+
+  </body>
+</html>
