@@ -11,9 +11,10 @@ function renderOffices(rawData){
     });
 }
 function renderSeats(rawData){
+    $('#seat-chart').html('');
     const seats = rawData
     .map(item => {
-        var occupiedSeat = `<div class="seat" seatNo="${item.seatNo}" state="${item.state}">座位：${item.seatNo} [員工：${item.empId} ${item.empName}(${item.deptName})]</div>`;
+        var occupiedSeat = `<div class="seat" seatNo="${item.seatNo}" state="${item.state}">座位：${item.seatNo} [${item.empId} ${item.empName} (${item.deptName})]</div>`;
         var emptySeat = `<div class="seat" seatNo="${item.seatNo}" state="${item.state}">座位：${item.seatNo}</div>`;
         var seatHtml = item.state === 0 ? emptySeat : occupiedSeat;
         return seatHtml;

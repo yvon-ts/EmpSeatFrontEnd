@@ -44,6 +44,8 @@
             </select>
             <select name="" id="selectEmp">
               <option value="">請選擇員工</option>
+              <option value="12345">12345 員工A</option>
+              <option value="12346">12346 員工B</option>
             </select>
           </nav>
           <div id="drive-data">
@@ -61,10 +63,16 @@
     <script src="js/main.js"></script>
     <script>
       var currentOffice;
+      var currentEmp;
       $('#selectOffice').change(() => {
         var officeId = $(event.target).val();
         currentOffice = officeId;
         getFloorsByOffice(officeId);
+      })
+      $('#selectEmp').change(() => {
+        var empId = $(event.target).val();
+        currentEmp = empId;
+        getFloorsByemp(empId);
       })
       
       function getFloorsByOffice(officeId){
@@ -79,7 +87,32 @@
         renderOffices(result);
     })
   }
-
+  function getFloorsByOffice(officeId){
+        const url = API_DOMAIN + "/office/" + officeId + "/floors";
+        axios.get(url
+        // ,{
+        // headers: {
+        //     'token': localStorage.getItem('token')}
+        // }
+    ).then(response => {
+      const result = response.data.data;
+        renderOffices(result);
+    })
+  }
+  function updateSeat(flagChange, empId, floorSeatSeq){
+    axios.post(API_UPDATE_SEAT, {
+        flagChange: 0, // if emp has original seat, flag will be 1
+        empId: empId,
+        floorSeatSeq: floorSeatSeq
+    }, {
+        headers: {
+            'Content-Type': 'application/json',
+            // 'token': localStorage.getItem('token')
+        }
+    }).then(response => {
+      // call API to refresh the seat chart
+    })
+  }
 
     </script>
 

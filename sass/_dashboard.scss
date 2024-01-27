@@ -193,9 +193,10 @@
         border: 5px solid rgba(92, 107, 192, 0.5);
     }
 }
-.floor, .file{
-    &[access="1"]{
-        background-color: #dfedfa;
+.seat{
+    &[state="1"]{
+        background-color: rgba(92, 107, 192, 0.5);
+        cursor: default;
       }
 }
 .icon{
